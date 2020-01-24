@@ -12,19 +12,12 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.*/
 
-extern crate serde;
-extern crate serde_json;
-
-extern crate reqwest;
-
-extern crate forecast;
-
 use std::error::Error;
 use std::fs::File;
 use std::path::{PathBuf, Path};
 use std::time::Duration;
 
-use reqwest::{Client, StatusCode};
+use reqwest::{blocking::Client, StatusCode};
 
 use forecast::{ApiResponse, ApiClient, ForecastRequestBuilder,
                TimeMachineRequestBuilder, ExcludeBlock, ExtendBy,

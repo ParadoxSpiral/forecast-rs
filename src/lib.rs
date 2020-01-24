@@ -46,7 +46,7 @@ limitations under the License.*/
 //! extern crate reqwest;
 //! extern crate forecast;
 //!
-//! use reqwest::Client;
+//! use reqwest::blocking::Client;
 //!
 //! use forecast::{ApiResponse, ApiClient, ForecastRequestBuilder,
 //!                TimeMachineRequestBuilder, ExcludeBlock, ExtendBy,
@@ -84,26 +84,16 @@ limitations under the License.*/
 //! }
 //! ```
 
-#[macro_use]
-extern crate serde_derive;
-
-extern crate serde;
-extern crate serde_json;
-
-extern crate itertools;
-
-extern crate reqwest;
-
 use std::vec::Vec;
 use std::borrow::Borrow;
 use std::option::Option;
 
-use serde::de::{Deserialize, Deserializer, IntoDeserializer};
-use serde::ser::{Serialize, Serializer};
+use serde::de::{Deserializer, IntoDeserializer};
+use serde::{Serialize, Serializer, Deserialize};
 
 use itertools::join;
 
-use reqwest::{Url, Result as ApiResult, Client, Response};
+use reqwest::{Url, Result as ApiResult, blocking::{Client, Response}};
 
 // constants
 
@@ -972,9 +962,9 @@ mod tests {
                 TimeMachineRequest, ExcludeBlock, Units, Lang, ExtendBy, FORECAST_URL, EXCLUDE,
                 EXTEND, LANG, UNITS};
 
-    use reqwest::Url;
+    use serde::{Serialize, Deserialize};
 
-    use serde_json;
+    use reqwest::Url;
 
     use std::vec::Vec;
 
